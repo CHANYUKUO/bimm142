@@ -1,0 +1,146 @@
+---
+title: "Lab9"
+author: "Chan-yu Kuo"
+format: pdf
+editor: visual
+---
+
+Main structure storing biomolecule is PDB.
+
+Q1. We need to obtain Experimental method and molecular type statistics
+
+What percentage of structures in the PDB are solved by X-Ray and Electron Microscopy.
+
+172654 by X-ray, 14105 by EM, total is 200988 for protein 85.9 % for X-ray and 7.02% for EM
+
+```{r}
+
+pdb.stat<- read.csv('PDB.csv')
+## substitude , with "", change the string into numbers
+x_array<-as.numeric(gsub(",","",pdb.stat$X.ray)) 
+EM_array<-as.numeric(gsub(",","",pdb.stat$EM))
+Total_array<-as.numeric(gsub(",","",pdb.stat$Total))
+xray_total<-sum(x_array)
+xray_total
+EM_total<-sum(EM_array)
+EM_total
+Total_total<-sum(Total_array)
+Total_total
+round(xray_total/Total_total *100,digits=2)
+round(EM_total/Total_total*100 ,digits=2)
+pdb.stat
+```
+
+Question 2: What proportion of structures in the PDB are protein? protein_only has 174642, total has 200988 The portion is about 86.89
+
+```{r}
+protein_only<-Total_array[1]# this is protein
+protein_only
+sum(Total_array[1:3])
+round(protein_only/sum(Total_array[1:3])*100,2)
+```
+
+Q3: Type HIV in the PDB website search box on the home page and determine how many HIV-1 protease structures are in the current PDB? 200,988 structures
+
+Q4: Water molecules normally have 3 atoms. Why do we see just one atom per water molecule in this structure? Because the resolution is 2A. Hydrogen is too small to be detected. Q5: There is a critical "conserved" water molecule in the binding site. Can you identify this water molecule? What residue number does this water molecule have The residue number is 308. It has 4 h-bond Q6 image from molstar ![An image I like from Molstar](1HSG.png) How many amino acid residues are there in this pdb object? 198 Name one of the two non-protein residues? HOH How many protein chains are in this structure? 2
+
+```{r}
+library(bio3d)
+pdb <- read.pdb("1hsg")
+head(pdb$atom$resid[1])
+attributes(pdb)
+```
+Performing Normal mode analysis to preduct protein flexibitlity and potential functional motions.
+```{r}
+adk <- read.pdb("6s36")
+```
+
+```{r}
+# Perform flexiblity prediction
+m <- nma(adk)
+```
+
+```{r}
+plot(m)
+```
+This file e will be import into pdb to see the movement
+```{r}
+mktrj(m, file="adk_m7.pdb")
+```
+Comparitive Structure Analysis of Adenylate Kinase
+```{r}
+# Install packages in the R console NOT your Rmd/Quarto file
+
+#install.packages("bio3d")
+#install.packages("devtools")
+#install.packages("BiocManager")
+
+#BiocManager::install("msa")
+#devtools::install_bitbucket("Grantlab/bio3d-view")
+```
+q10: Which of the packages above is found only on BioConductor and not CRAN?
+MSA
+q11 Which of the above packages is not found on BioConductor or CRAN?:
+bio3d-view
+Functions from the devtools package can be used to install packages from GitHub and BitBucket
+True
+
+
+```{r}
+library(bio3d)
+aa <- get.seq("1ake_A")
+aa
+```
+Q13 How many amino acids are in this sequence, i.e. how long is this sequence?
+214 aa
+```{r}
+#Blast or hmmer search, then we save the RDs file so we can access next time
+b <- blast.pdb(aa)
+saveRDS(b, file = "blast_1ake_A.RDS")
+
+```
+```{r}
+b <- readRDS("blast_1ake_A.RDS")
+hits <- plot(b)
+```
+```{r}
+head(hits$pdb.id)
+```
+```{r}
+ files <- get.pdb(hits$pdb.id, path="pdbs", split=TRUE, gzip=TRUE)
+```
+```{r}
+
+  # Align PDBs downloaded before
+  pdbs <- pdbaln(files, fit = TRUE, exefile="msa")
+```
+```{r}
+  head(pdbs$id)
+```
+```{r}
+ids <- basename.pdb(pdbs$id)
+```
+```{r}
+anno <- pdb.annotate(ids)
+unique(anno$source)
+```
+```{r}
+pc.xray <- pca(pdbs)
+plot(pc.xray)
+```
+each dot represent one PDB structure, and the RMSD is the value of the distance between each pdb structure pair. 
+```{r}
+# Calculate RMSD
+rd <- rmsd(pdbs)
+
+# Structure-based clustering
+hc.rd <- hclust(dist(rd))
+grps.rd <- cutree(hc.rd, k=3)
+
+plot(pc.xray, 1:2, col="grey50", bg=grps.rd, pch=21, cex=1)
+```
+```{r}
+# Visualize first principal component
+pc1 <- mktrj(pc.xray, pc=1, file="pc_1.pdb")
+```
+
