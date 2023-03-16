@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Quarto Preview</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #383a42;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #383a42; } /* Normal */
+    code span.al { color: #95da4c; background-color: #4d1f24; font-weight: bold; } /* Alert */
+    code span.an { color: #50a14f; } /* Annotation */
+    code span.at { color: #a626a4; } /* Attribute */
+    code span.bn { color: #986801; } /* BaseN */
+    code span.bu { color: #a626a4; } /* BuiltIn */
+    code span.cf { color: #a626a4; } /* ControlFlow */
+    code span.ch { color: #50a14f; } /* Char */
+    code span.cn { color: #986801; } /* Constant */
+    code span.co { color: #a0a1a7; font-style: italic; } /* Comment */
+    code span.cv { color: #e45649; font-style: italic; } /* CommentVar */
+    code span.do { color: #e45649; } /* Documentation */
+    code span.dt { color: #a626a4; } /* DataType */
+    code span.dv { color: #986801; } /* DecVal */
+    code span.er { color: #f44747; text-decoration: underline; } /* Error */
+    code span.ex { color: #4078f2; font-weight: bold; } /* Extension */
+    code span.fl { color: #986801; } /* Float */
+    code span.fu { color: #4078f2; } /* Function */
+    code span.im { color: #50a14f; } /* Import */
+    code span.in { color: #c45b00; } /* Information */
+    code span.kw { color: #a626a4; } /* Keyword */
+    code span.op { color: #a626a4; } /* Operator */
+    code span.ot { color: #27ae60; } /* Other */
+    code span.pp { color: #a626a4; } /* Preprocessor */
+    code span.re { color: #2980b9; background-color: #153042; } /* RegionMarker */
+    code span.sc { color: #0184bc; } /* SpecialChar */
+    code span.ss { color: #da4453; } /* SpecialString */
+    code span.st { color: #50a14f; } /* String */
+    code span.va { color: #e45649; } /* Variable */
+    code span.vs { color: #da4453; } /* VerbatimString */
+    code span.wa { color: #da4453; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<style type="text/css">
+body { margin: 8px 12px; background-color: #FFFFFF }
+div.sourceCode { background-color: transparent; }
+</style>
+<div class="sourceCode" id="cb1"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>hw8_miniproject</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">================</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">## Preparing the data</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Save your input data file into your Project directory</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>fna.data <span class="ot">&lt;-</span> <span class="st">&quot;WisconsinCancer.csv&quot;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Complete the following code to input the data and store as wisc.df</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>wisc.df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(fna.data, <span class="at">row.names=</span><span class="dv">1</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wisc.df)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="in">             diagnosis radius_mean texture_mean perimeter_mean area_mean</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="in">    842302           M       17.99        10.38         122.80    1001.0</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="in">    842517           M       20.57        17.77         132.90    1326.0</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903         M       19.69        21.25         130.00    1203.0</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301         M       11.42        20.38          77.58     386.1</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402         M       20.29        14.34         135.10    1297.0</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="in">    843786           M       12.45        15.70          82.57     477.1</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="in">             smoothness_mean compactness_mean concavity_mean concave.points_mean</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="in">    842302           0.11840          0.27760         0.3001             0.14710</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="in">    842517           0.08474          0.07864         0.0869             0.07017</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903         0.10960          0.15990         0.1974             0.12790</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301         0.14250          0.28390         0.2414             0.10520</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402         0.10030          0.13280         0.1980             0.10430</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="in">    843786           0.12780          0.17000         0.1578             0.08089</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="in">             symmetry_mean fractal_dimension_mean radius_se texture_se perimeter_se</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="in">    842302          0.2419                0.07871    1.0950     0.9053        8.589</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="in">    842517          0.1812                0.05667    0.5435     0.7339        3.398</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903        0.2069                0.05999    0.7456     0.7869        4.585</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301        0.2597                0.09744    0.4956     1.1560        3.445</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402        0.1809                0.05883    0.7572     0.7813        5.438</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="in">    843786          0.2087                0.07613    0.3345     0.8902        2.217</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="in">             area_se smoothness_se compactness_se concavity_se concave.points_se</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="in">    842302    153.40      0.006399        0.04904      0.05373           0.01587</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="in">    842517     74.08      0.005225        0.01308      0.01860           0.01340</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903   94.03      0.006150        0.04006      0.03832           0.02058</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301   27.23      0.009110        0.07458      0.05661           0.01867</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402   94.44      0.011490        0.02461      0.05688           0.01885</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="in">    843786     27.19      0.007510        0.03345      0.03672           0.01137</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="in">             symmetry_se fractal_dimension_se radius_worst texture_worst</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="in">    842302       0.03003             0.006193        25.38         17.33</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="in">    842517       0.01389             0.003532        24.99         23.41</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903     0.02250             0.004571        23.57         25.53</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301     0.05963             0.009208        14.91         26.50</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402     0.01756             0.005115        22.54         16.67</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="in">    843786       0.02165             0.005082        15.47         23.75</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="in">             perimeter_worst area_worst smoothness_worst compactness_worst</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="in">    842302            184.60     2019.0           0.1622            0.6656</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="in">    842517            158.80     1956.0           0.1238            0.1866</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903          152.50     1709.0           0.1444            0.4245</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301           98.87      567.7           0.2098            0.8663</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402          152.20     1575.0           0.1374            0.2050</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="in">    843786            103.40      741.6           0.1791            0.5249</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="in">             concavity_worst concave.points_worst symmetry_worst</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="in">    842302            0.7119               0.2654         0.4601</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="in">    842517            0.2416               0.1860         0.2750</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903          0.4504               0.2430         0.3613</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301          0.6869               0.2575         0.6638</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402          0.4000               0.1625         0.2364</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="in">    843786            0.5355               0.1741         0.3985</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="in">             fractal_dimension_worst</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="in">    842302                   0.11890</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="in">    842517                   0.08902</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903                 0.08758</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301                 0.17300</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402                 0.07678</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="in">    843786                   0.12440</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>Diagnosis should contain the diagnosis column from wisc</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>wisc.data <span class="ot">&lt;-</span> wisc.df[,<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>diagnosis <span class="ot">&lt;-</span> wisc.df<span class="sc">$</span>diagnosis</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(diagnosis)</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="in">    [1] &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot;</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wisc.data)</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="in">             radius_mean texture_mean perimeter_mean area_mean smoothness_mean</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="in">    842302         17.99        10.38         122.80    1001.0         0.11840</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="in">    842517         20.57        17.77         132.90    1326.0         0.08474</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903       19.69        21.25         130.00    1203.0         0.10960</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301       11.42        20.38          77.58     386.1         0.14250</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402       20.29        14.34         135.10    1297.0         0.10030</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="in">    843786         12.45        15.70          82.57     477.1         0.12780</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="in">             compactness_mean concavity_mean concave.points_mean symmetry_mean</span></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="in">    842302            0.27760         0.3001             0.14710        0.2419</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="in">    842517            0.07864         0.0869             0.07017        0.1812</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903          0.15990         0.1974             0.12790        0.2069</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301          0.28390         0.2414             0.10520        0.2597</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402          0.13280         0.1980             0.10430        0.1809</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="in">    843786            0.17000         0.1578             0.08089        0.2087</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="in">             fractal_dimension_mean radius_se texture_se perimeter_se area_se</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="in">    842302                  0.07871    1.0950     0.9053        8.589  153.40</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="in">    842517                  0.05667    0.5435     0.7339        3.398   74.08</span></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903                0.05999    0.7456     0.7869        4.585   94.03</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301                0.09744    0.4956     1.1560        3.445   27.23</span></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402                0.05883    0.7572     0.7813        5.438   94.44</span></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="in">    843786                  0.07613    0.3345     0.8902        2.217   27.19</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="in">             smoothness_se compactness_se concavity_se concave.points_se</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="in">    842302        0.006399        0.04904      0.05373           0.01587</span></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="in">    842517        0.005225        0.01308      0.01860           0.01340</span></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903      0.006150        0.04006      0.03832           0.02058</span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301      0.009110        0.07458      0.05661           0.01867</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402      0.011490        0.02461      0.05688           0.01885</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="in">    843786        0.007510        0.03345      0.03672           0.01137</span></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="in">             symmetry_se fractal_dimension_se radius_worst texture_worst</span></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="in">    842302       0.03003             0.006193        25.38         17.33</span></span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a><span class="in">    842517       0.01389             0.003532        24.99         23.41</span></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903     0.02250             0.004571        23.57         25.53</span></span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301     0.05963             0.009208        14.91         26.50</span></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402     0.01756             0.005115        22.54         16.67</span></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="in">    843786       0.02165             0.005082        15.47         23.75</span></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a><span class="in">             perimeter_worst area_worst smoothness_worst compactness_worst</span></span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a><span class="in">    842302            184.60     2019.0           0.1622            0.6656</span></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a><span class="in">    842517            158.80     1956.0           0.1238            0.1866</span></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903          152.50     1709.0           0.1444            0.4245</span></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301           98.87      567.7           0.2098            0.8663</span></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402          152.20     1575.0           0.1374            0.2050</span></span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a><span class="in">    843786            103.40      741.6           0.1791            0.5249</span></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a><span class="in">             concavity_worst concave.points_worst symmetry_worst</span></span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a><span class="in">    842302            0.7119               0.2654         0.4601</span></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a><span class="in">    842517            0.2416               0.1860         0.2750</span></span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903          0.4504               0.2430         0.3613</span></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301          0.6869               0.2575         0.6638</span></span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402          0.4000               0.1625         0.2364</span></span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a><span class="in">    843786            0.5355               0.1741         0.3985</span></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a><span class="in">             fractal_dimension_worst</span></span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a><span class="in">    842302                   0.11890</span></span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="in">    842517                   0.08902</span></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903                 0.08758</span></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301                 0.17300</span></span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402                 0.07678</span></span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a><span class="in">    843786                   0.12440</span></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wisc.df)</span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a><span class="in">             diagnosis radius_mean texture_mean perimeter_mean area_mean</span></span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a><span class="in">    842302           M       17.99        10.38         122.80    1001.0</span></span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a><span class="in">    842517           M       20.57        17.77         132.90    1326.0</span></span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903         M       19.69        21.25         130.00    1203.0</span></span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301         M       11.42        20.38          77.58     386.1</span></span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402         M       20.29        14.34         135.10    1297.0</span></span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a><span class="in">    843786           M       12.45        15.70          82.57     477.1</span></span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a><span class="in">             smoothness_mean compactness_mean concavity_mean concave.points_mean</span></span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a><span class="in">    842302           0.11840          0.27760         0.3001             0.14710</span></span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a><span class="in">    842517           0.08474          0.07864         0.0869             0.07017</span></span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903         0.10960          0.15990         0.1974             0.12790</span></span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301         0.14250          0.28390         0.2414             0.10520</span></span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402         0.10030          0.13280         0.1980             0.10430</span></span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a><span class="in">    843786           0.12780          0.17000         0.1578             0.08089</span></span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a><span class="in">             symmetry_mean fractal_dimension_mean radius_se texture_se perimeter_se</span></span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a><span class="in">    842302          0.2419                0.07871    1.0950     0.9053        8.589</span></span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a><span class="in">    842517          0.1812                0.05667    0.5435     0.7339        3.398</span></span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903        0.2069                0.05999    0.7456     0.7869        4.585</span></span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301        0.2597                0.09744    0.4956     1.1560        3.445</span></span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402        0.1809                0.05883    0.7572     0.7813        5.438</span></span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a><span class="in">    843786          0.2087                0.07613    0.3345     0.8902        2.217</span></span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a><span class="in">             area_se smoothness_se compactness_se concavity_se concave.points_se</span></span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a><span class="in">    842302    153.40      0.006399        0.04904      0.05373           0.01587</span></span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a><span class="in">    842517     74.08      0.005225        0.01308      0.01860           0.01340</span></span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903   94.03      0.006150        0.04006      0.03832           0.02058</span></span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301   27.23      0.009110        0.07458      0.05661           0.01867</span></span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402   94.44      0.011490        0.02461      0.05688           0.01885</span></span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a><span class="in">    843786     27.19      0.007510        0.03345      0.03672           0.01137</span></span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a><span class="in">             symmetry_se fractal_dimension_se radius_worst texture_worst</span></span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a><span class="in">    842302       0.03003             0.006193        25.38         17.33</span></span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a><span class="in">    842517       0.01389             0.003532        24.99         23.41</span></span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903     0.02250             0.004571        23.57         25.53</span></span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301     0.05963             0.009208        14.91         26.50</span></span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402     0.01756             0.005115        22.54         16.67</span></span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a><span class="in">    843786       0.02165             0.005082        15.47         23.75</span></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a><span class="in">             perimeter_worst area_worst smoothness_worst compactness_worst</span></span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a><span class="in">    842302            184.60     2019.0           0.1622            0.6656</span></span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a><span class="in">    842517            158.80     1956.0           0.1238            0.1866</span></span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903          152.50     1709.0           0.1444            0.4245</span></span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301           98.87      567.7           0.2098            0.8663</span></span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402          152.20     1575.0           0.1374            0.2050</span></span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a><span class="in">    843786            103.40      741.6           0.1791            0.5249</span></span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a><span class="in">             concavity_worst concave.points_worst symmetry_worst</span></span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a><span class="in">    842302            0.7119               0.2654         0.4601</span></span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a><span class="in">    842517            0.2416               0.1860         0.2750</span></span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903          0.4504               0.2430         0.3613</span></span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301          0.6869               0.2575         0.6638</span></span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402          0.4000               0.1625         0.2364</span></span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a><span class="in">    843786            0.5355               0.1741         0.3985</span></span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a><span class="in">             fractal_dimension_worst</span></span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a><span class="in">    842302                   0.11890</span></span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a><span class="in">    842517                   0.08902</span></span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903                 0.08758</span></span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301                 0.17300</span></span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402                 0.07678</span></span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a><span class="in">    843786                   0.12440</span></span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a>Q1 How many observations are in this dataset? 569 rows and 31 columns</span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(wisc.df)</span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a><span class="in">    [1] 569  31</span></span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>Q2 How many of the observations have a malignant diagnosis? 212</span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(wisc.df[diagnosis<span class="sc">==</span><span class="st">&quot;M&quot;</span>,])</span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a><span class="in">    [1] 212</span></span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a>Q3How many variables/features in the data are suffixed with <span class="in">`_mean`</span>? 10</span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a>based on reading the structure of the data</span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(wisc.df)</span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a><span class="in">    &#39;data.frame&#39;:   569 obs. of  31 variables:</span></span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a><span class="in">     $ diagnosis              : chr  &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; ...</span></span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a><span class="in">     $ radius_mean            : num  18 20.6 19.7 11.4 20.3 ...</span></span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a><span class="in">     $ texture_mean           : num  10.4 17.8 21.2 20.4 14.3 ...</span></span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a><span class="in">     $ perimeter_mean         : num  122.8 132.9 130 77.6 135.1 ...</span></span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a><span class="in">     $ area_mean              : num  1001 1326 1203 386 1297 ...</span></span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a><span class="in">     $ smoothness_mean        : num  0.1184 0.0847 0.1096 0.1425 0.1003 ...</span></span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a><span class="in">     $ compactness_mean       : num  0.2776 0.0786 0.1599 0.2839 0.1328 ...</span></span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a><span class="in">     $ concavity_mean         : num  0.3001 0.0869 0.1974 0.2414 0.198 ...</span></span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a><span class="in">     $ concave.points_mean    : num  0.1471 0.0702 0.1279 0.1052 0.1043 ...</span></span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a><span class="in">     $ symmetry_mean          : num  0.242 0.181 0.207 0.26 0.181 ...</span></span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a><span class="in">     $ fractal_dimension_mean : num  0.0787 0.0567 0.06 0.0974 0.0588 ...</span></span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a><span class="in">     $ radius_se              : num  1.095 0.543 0.746 0.496 0.757 ...</span></span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a><span class="in">     $ texture_se             : num  0.905 0.734 0.787 1.156 0.781 ...</span></span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a><span class="in">     $ perimeter_se           : num  8.59 3.4 4.58 3.44 5.44 ...</span></span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a><span class="in">     $ area_se                : num  153.4 74.1 94 27.2 94.4 ...</span></span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a><span class="in">     $ smoothness_se          : num  0.0064 0.00522 0.00615 0.00911 0.01149 ...</span></span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a><span class="in">     $ compactness_se         : num  0.049 0.0131 0.0401 0.0746 0.0246 ...</span></span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a><span class="in">     $ concavity_se           : num  0.0537 0.0186 0.0383 0.0566 0.0569 ...</span></span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a><span class="in">     $ concave.points_se      : num  0.0159 0.0134 0.0206 0.0187 0.0188 ...</span></span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a><span class="in">     $ symmetry_se            : num  0.03 0.0139 0.0225 0.0596 0.0176 ...</span></span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a><span class="in">     $ fractal_dimension_se   : num  0.00619 0.00353 0.00457 0.00921 0.00511 ...</span></span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a><span class="in">     $ radius_worst           : num  25.4 25 23.6 14.9 22.5 ...</span></span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a><span class="in">     $ texture_worst          : num  17.3 23.4 25.5 26.5 16.7 ...</span></span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a><span class="in">     $ perimeter_worst        : num  184.6 158.8 152.5 98.9 152.2 ...</span></span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a><span class="in">     $ area_worst             : num  2019 1956 1709 568 1575 ...</span></span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a><span class="in">     $ smoothness_worst       : num  0.162 0.124 0.144 0.21 0.137 ...</span></span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a><span class="in">     $ compactness_worst      : num  0.666 0.187 0.424 0.866 0.205 ...</span></span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a><span class="in">     $ concavity_worst        : num  0.712 0.242 0.45 0.687 0.4 ...</span></span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a><span class="in">     $ concave.points_worst   : num  0.265 0.186 0.243 0.258 0.163 ...</span></span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a><span class="in">     $ symmetry_worst         : num  0.46 0.275 0.361 0.664 0.236 ...</span></span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a><span class="in">     $ fractal_dimension_worst: num  0.1189 0.089 0.0876 0.173 0.0768 ...</span></span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>PCA components::</span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a><span class="co"># Check column means and standard deviations</span></span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a><span class="do">## How to scale? What is appropriate?</span></span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(wisc.data)</span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a><span class="in">                radius_mean            texture_mean          perimeter_mean </span></span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a><span class="in">               1.412729e+01            1.928965e+01            9.196903e+01 </span></span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a><span class="in">                  area_mean         smoothness_mean        compactness_mean </span></span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a><span class="in">               6.548891e+02            9.636028e-02            1.043410e-01 </span></span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a><span class="in">             concavity_mean     concave.points_mean           symmetry_mean </span></span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a><span class="in">               8.879932e-02            4.891915e-02            1.811619e-01 </span></span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a><span class="in">     fractal_dimension_mean               radius_se              texture_se </span></span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a><span class="in">               6.279761e-02            4.051721e-01            1.216853e+00 </span></span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a><span class="in">               perimeter_se                 area_se           smoothness_se </span></span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a><span class="in">               2.866059e+00            4.033708e+01            7.040979e-03 </span></span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a><span class="in">             compactness_se            concavity_se       concave.points_se </span></span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a><span class="in">               2.547814e-02            3.189372e-02            1.179614e-02 </span></span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a><span class="in">                symmetry_se    fractal_dimension_se            radius_worst </span></span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a><span class="in">               2.054230e-02            3.794904e-03            1.626919e+01 </span></span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a><span class="in">              texture_worst         perimeter_worst              area_worst </span></span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a><span class="in">               2.567722e+01            1.072612e+02            8.805831e+02 </span></span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a><span class="in">           smoothness_worst       compactness_worst         concavity_worst </span></span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a><span class="in">               1.323686e-01            2.542650e-01            2.721885e-01 </span></span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a><span class="in">       concave.points_worst          symmetry_worst fractal_dimension_worst </span></span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a><span class="in">               1.146062e-01            2.900756e-01            8.394582e-02 </span></span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(wisc.data,<span class="dv">2</span>,sd)</span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a><span class="in">                radius_mean            texture_mean          perimeter_mean </span></span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a><span class="in">               3.524049e+00            4.301036e+00            2.429898e+01 </span></span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a><span class="in">                  area_mean         smoothness_mean        compactness_mean </span></span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a><span class="in">               3.519141e+02            1.406413e-02            5.281276e-02 </span></span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a><span class="in">             concavity_mean     concave.points_mean           symmetry_mean </span></span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a><span class="in">               7.971981e-02            3.880284e-02            2.741428e-02 </span></span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a><span class="in">     fractal_dimension_mean               radius_se              texture_se </span></span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a><span class="in">               7.060363e-03            2.773127e-01            5.516484e-01 </span></span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a><span class="in">               perimeter_se                 area_se           smoothness_se </span></span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a><span class="in">               2.021855e+00            4.549101e+01            3.002518e-03 </span></span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a><span class="in">             compactness_se            concavity_se       concave.points_se </span></span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a><span class="in">               1.790818e-02            3.018606e-02            6.170285e-03 </span></span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a><span class="in">                symmetry_se    fractal_dimension_se            radius_worst </span></span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a><span class="in">               8.266372e-03            2.646071e-03            4.833242e+00 </span></span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a><span class="in">              texture_worst         perimeter_worst              area_worst </span></span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a><span class="in">               6.146258e+00            3.360254e+01            5.693570e+02 </span></span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a><span class="in">           smoothness_worst       compactness_worst         concavity_worst </span></span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a><span class="in">               2.283243e-02            1.573365e-01            2.086243e-01 </span></span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a><span class="in">       concave.points_worst          symmetry_worst fractal_dimension_worst </span></span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a><span class="in">               6.573234e-02            6.186747e-02            1.806127e-02 </span></span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform PCA on wisc.data by completing the following code</span></span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>wisc.pr <span class="ot">&lt;-</span> <span class="fu">prcomp</span>( wisc.data, <span class="at">scale=</span><span class="cn">TRUE</span>)</span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a><span class="do">## Scale is appropriate if the mean and sd varied by a lot between cases.</span></span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(wisc.pr)</span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a><span class="in">    Importance of components:</span></span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a><span class="in">                              PC1    PC2     PC3     PC4     PC5     PC6     PC7</span></span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a><span class="in">    Standard deviation     3.6444 2.3857 1.67867 1.40735 1.28403 1.09880 0.82172</span></span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a><span class="in">    Proportion of Variance 0.4427 0.1897 0.09393 0.06602 0.05496 0.04025 0.02251</span></span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a><span class="in">    Cumulative Proportion  0.4427 0.6324 0.72636 0.79239 0.84734 0.88759 0.91010</span></span>
+<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a><span class="in">                               PC8    PC9    PC10   PC11    PC12    PC13    PC14</span></span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a><span class="in">    Standard deviation     0.69037 0.6457 0.59219 0.5421 0.51104 0.49128 0.39624</span></span>
+<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a><span class="in">    Proportion of Variance 0.01589 0.0139 0.01169 0.0098 0.00871 0.00805 0.00523</span></span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a><span class="in">    Cumulative Proportion  0.92598 0.9399 0.95157 0.9614 0.97007 0.97812 0.98335</span></span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a><span class="in">                              PC15    PC16    PC17    PC18    PC19    PC20   PC21</span></span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a><span class="in">    Standard deviation     0.30681 0.28260 0.24372 0.22939 0.22244 0.17652 0.1731</span></span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a><span class="in">    Proportion of Variance 0.00314 0.00266 0.00198 0.00175 0.00165 0.00104 0.0010</span></span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a><span class="in">    Cumulative Proportion  0.98649 0.98915 0.99113 0.99288 0.99453 0.99557 0.9966</span></span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a><span class="in">                              PC22    PC23   PC24    PC25    PC26    PC27    PC28</span></span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a><span class="in">    Standard deviation     0.16565 0.15602 0.1344 0.12442 0.09043 0.08307 0.03987</span></span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a><span class="in">    Proportion of Variance 0.00091 0.00081 0.0006 0.00052 0.00027 0.00023 0.00005</span></span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a><span class="in">    Cumulative Proportion  0.99749 0.99830 0.9989 0.99942 0.99969 0.99992 0.99997</span></span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a><span class="in">                              PC29    PC30</span></span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a><span class="in">    Standard deviation     0.02736 0.01153</span></span>
+<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a><span class="in">    Proportion of Variance 0.00002 0.00000</span></span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a><span class="in">    Cumulative Proportion  1.00000 1.00000</span></span>
+<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a>Q4: From the result above, PC1 cover 44.27% of variance</span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>Q5: To get at least 70% of variance, we need PC1,PC2, and PC3</span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a>Q6: To get at least 90% of variance, we need at least PC 1,2,3,4,5,6,7.</span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>Q7: What stands out to you about this plot? Nothing, I can barely</span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a>understand anything as it is filled with a bunch of different</span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a>information.</span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a><span class="fu">biplot</span>(wisc.pr)</span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a><span class="al">![](miniProject_files/figure-commonmark/unnamed-chunk-9-1.png)</span></span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a>diagnosis</span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a><span class="in">      [1] &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot;</span></span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a><span class="in">     [19] &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot;</span></span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a><span class="in">     [37] &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot;</span></span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a><span class="in">     [55] &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot;</span></span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a><span class="in">     [73] &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot;</span></span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a><span class="in">     [91] &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot;</span></span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a><span class="in">    [109] &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</span></span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a><span class="in">    [127] &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot;</span></span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a><span class="in">    [145] &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot;</span></span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a><span class="in">    [163] &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot;</span></span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a><span class="in">    [181] &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot;</span></span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a><span class="in">    [199] &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot;</span></span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a><span class="in">    [217] &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot;</span></span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a><span class="in">    [235] &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot;</span></span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a><span class="in">    [253] &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</span></span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a><span class="in">    [271] &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</span></span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a><span class="in">    [289] &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</span></span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a><span class="in">    [307] &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot;</span></span>
+<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a><span class="in">    [325] &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot;</span></span>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a><span class="in">    [343] &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</span></span>
+<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a><span class="in">    [361] &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</span></span>
+<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a><span class="in">    [379] &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot;</span></span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a><span class="in">    [397] &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</span></span>
+<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a><span class="in">    [415] &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot;</span></span>
+<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a><span class="in">    [433] &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot;</span></span>
+<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a><span class="in">    [451] &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</span></span>
+<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a><span class="in">    [469] &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</span></span>
+<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a><span class="in">    [487] &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot;</span></span>
+<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a><span class="in">    [505] &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot;</span></span>
+<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a><span class="in">    [523] &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</span></span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a><span class="in">    [541] &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</span></span>
+<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a><span class="in">    [559] &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;M&quot; &quot;B&quot;</span></span>
+<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a>Q8 The PCA plots shows some clustering distinct from one another (red</span>
+<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a>and black). PC1 Vs PC2 looks better than PC1 VS PC3, as one of the black</span>
+<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a>dot show up in the red region.</span>
+<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wisc.pr<span class="sc">$</span>x)</span>
+<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a><span class="in">                   PC1        PC2        PC3       PC4        PC5         PC6</span></span>
+<span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a><span class="in">    842302   -9.184755  -1.946870 -1.1221788 3.6305364  1.1940595  1.41018364</span></span>
+<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a><span class="in">    842517   -2.385703   3.764859 -0.5288274 1.1172808 -0.6212284  0.02863116</span></span>
+<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903 -5.728855   1.074229 -0.5512625 0.9112808  0.1769302  0.54097615</span></span>
+<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301 -7.116691 -10.266556 -3.2299475 0.1524129  2.9582754  3.05073750</span></span>
+<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402 -3.931842   1.946359  1.3885450 2.9380542 -0.5462667 -1.22541641</span></span>
+<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a><span class="in">    843786   -2.378155  -3.946456 -2.9322967 0.9402096  1.0551135 -0.45064213</span></span>
+<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a><span class="in">                     PC7         PC8         PC9       PC10       PC11       PC12</span></span>
+<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a><span class="in">    842302    2.15747152  0.39805698 -0.15698023 -0.8766305 -0.2627243 -0.8582593</span></span>
+<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a><span class="in">    842517    0.01334635 -0.24077660 -0.71127897  1.1060218 -0.8124048  0.1577838</span></span>
+<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903 -0.66757908 -0.09728813  0.02404449  0.4538760  0.6050715  0.1242777</span></span>
+<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301  1.42865363 -1.05863376 -1.40420412 -1.1159933  1.1505012  1.0104267</span></span>
+<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402 -0.93538950 -0.63581661 -0.26357355  0.3773724 -0.6507870 -0.1104183</span></span>
+<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a><span class="in">    843786    0.49001396  0.16529843 -0.13335576 -0.5299649 -0.1096698  0.0813699</span></span>
+<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a><span class="in">                    PC13         PC14         PC15        PC16        PC17</span></span>
+<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a><span class="in">    842302    0.10329677 -0.690196797  0.601264078  0.74446075 -0.26523740</span></span>
+<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a><span class="in">    842517   -0.94269981 -0.652900844 -0.008966977 -0.64823831 -0.01719707</span></span>
+<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903 -0.41026561  0.016665095 -0.482994760  0.32482472  0.19075064</span></span>
+<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301 -0.93245070 -0.486988399  0.168699395  0.05132509  0.48220960</span></span>
+<span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402  0.38760691 -0.538706543 -0.310046684 -0.15247165  0.13302526</span></span>
+<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a><span class="in">    843786   -0.02625135  0.003133944 -0.178447576 -0.01270566  0.19671335</span></span>
+<span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a><span class="in">                    PC18       PC19        PC20         PC21        PC22</span></span>
+<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a><span class="in">    842302   -0.54907956  0.1336499  0.34526111  0.096430045 -0.06878939</span></span>
+<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a><span class="in">    842517    0.31801756 -0.2473470 -0.11403274 -0.077259494  0.09449530</span></span>
+<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903 -0.08789759 -0.3922812 -0.20435242  0.310793246  0.06025601</span></span>
+<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301 -0.03584323 -0.0267241 -0.46432511  0.433811661  0.20308706</span></span>
+<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402 -0.01869779  0.4610302  0.06543782 -0.116442469  0.01763433</span></span>
+<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a><span class="in">    843786   -0.29727706 -0.1297265 -0.07117453 -0.002400178  0.10108043</span></span>
+<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a><span class="in">                    PC23         PC24         PC25         PC26        PC27</span></span>
+<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a><span class="in">    842302    0.08444429  0.175102213  0.150887294 -0.201326305 -0.25236294</span></span>
+<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a><span class="in">    842517   -0.21752666 -0.011280193  0.170360355 -0.041092627  0.18111081</span></span>
+<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903 -0.07422581 -0.102671419 -0.171007656  0.004731249  0.04952586</span></span>
+<span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301 -0.12399554 -0.153294780 -0.077427574 -0.274982822  0.18330078</span></span>
+<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402  0.13933105  0.005327110 -0.003059371  0.039219780  0.03213957</span></span>
+<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a><span class="in">    843786    0.03344819 -0.002837749 -0.122282765 -0.030272333 -0.08438081</span></span>
+<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a><span class="in">                      PC28         PC29          PC30</span></span>
+<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a><span class="in">    842302   -0.0338846387  0.045607590  0.0471277407</span></span>
+<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a><span class="in">    842517    0.0325955021 -0.005682424  0.0018662342</span></span>
+<span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a><span class="in">    84300903  0.0469844833  0.003143131 -0.0007498749</span></span>
+<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a><span class="in">    84348301  0.0424469831 -0.069233868  0.0199198881</span></span>
+<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a><span class="in">    84358402 -0.0347556386  0.005033481 -0.0211951203</span></span>
+<span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a><span class="in">    843786    0.0007296587 -0.019703996 -0.0034564331</span></span>
+<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a><span class="in">`{plot( wisc.pr$x, col=factor(diagnosis),}      xlab = &quot;PC1&quot;, ylab = &quot;PC2&quot;)`</span></span>
+<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wisc.pr<span class="sc">$</span>x[,<span class="dv">1</span>],wisc.pr<span class="sc">$</span>x[,<span class="dv">3</span>], <span class="at">col =</span> <span class="fu">factor</span>(diagnosis), </span>
+<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;PC1&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;PC3&quot;</span>)</span>
+<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a><span class="al">![](miniProject_files/figure-commonmark/unnamed-chunk-13-1.png)</span></span>
+<span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data.frame for ggplot</span></span>
+<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(wisc.pr<span class="sc">$</span>x)</span>
+<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>diagnosis <span class="ot">&lt;-</span> diagnosis</span>
+<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the ggplot2 package</span></span>
+<span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a scatter plot colored by diagnosis</span></span>
+<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df) <span class="sc">+</span> </span>
+<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(PC1, PC2, <span class="at">col=</span>df<span class="sc">$</span>diagnosis) <span class="sc">+</span> </span>
+<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a><span class="al">![](miniProject_files/figure-commonmark/unnamed-chunk-14-1.png)</span></span>
+<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate variance of each component</span></span>
+<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a>pr.var <span class="ot">&lt;-</span> wisc.pr<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pr.var)</span>
+<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a><span class="in">    [1] 13.281608  5.691355  2.817949  1.980640  1.648731  1.207357</span></span>
+<span id="cb1-482"><a href="#cb1-482" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a><span class="co"># Variance explained by each principal component: pve</span></span>
+<span id="cb1-485"><a href="#cb1-485" aria-hidden="true" tabindex="-1"></a>pve <span class="ot">&lt;-</span> pr.var <span class="sc">/</span> <span class="fu">sum</span>(pr.var)</span>
+<span id="cb1-486"><a href="#cb1-486" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-487"><a href="#cb1-487" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot variance explained for each principal component</span></span>
+<span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pve, <span class="at">xlab =</span> <span class="st">&quot;Principal Component&quot;</span>, </span>
+<span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Proportion of Variance Explained&quot;</span>, </span>
+<span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">type =</span> <span class="st">&quot;o&quot;</span>)</span>
+<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a><span class="al">![](miniProject_files/figure-commonmark/unnamed-chunk-16-1.png)</span></span>
+<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternative scree plot of the same data, note data driven y-axis</span></span>
+<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(pve, <span class="at">ylab =</span> <span class="st">&quot;Precent of Variance Explained&quot;</span>,</span>
+<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a>     <span class="at">names.arg=</span><span class="fu">paste0</span>(<span class="st">&quot;PC&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(pve)), <span class="at">las=</span><span class="dv">2</span>, <span class="at">axes =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">2</span>, <span class="at">at=</span>pve, <span class="at">labels=</span><span class="fu">round</span>(pve,<span class="dv">2</span>)<span class="sc">*</span><span class="dv">100</span> )</span>
+<span id="cb1-500"><a href="#cb1-500" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-501"><a href="#cb1-501" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-502"><a href="#cb1-502" aria-hidden="true" tabindex="-1"></a><span class="al">![](miniProject_files/figure-commonmark/unnamed-chunk-16-2.png)</span></span>
+<span id="cb1-503"><a href="#cb1-503" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-504"><a href="#cb1-504" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-505"><a href="#cb1-505" aria-hidden="true" tabindex="-1"></a><span class="do">## ggplot based graph</span></span>
+<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;factoextra&quot;)</span></span>
+<span id="cb1-507"><a href="#cb1-507" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb1-508"><a href="#cb1-508" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-509"><a href="#cb1-509" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-510"><a href="#cb1-510" aria-hidden="true" tabindex="-1"></a><span class="in">    Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa</span></span>
+<span id="cb1-511"><a href="#cb1-511" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-512"><a href="#cb1-512" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_eig</span>(wisc.pr, <span class="at">addlabels =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-515"><a href="#cb1-515" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a><span class="al">![](miniProject_files/figure-commonmark/unnamed-chunk-17-1.png)</span></span>
+<span id="cb1-517"><a href="#cb1-517" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-518"><a href="#cb1-518" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Q9.** For the first principal component, what is the component of</span>
+<span id="cb1-519"><a href="#cb1-519" aria-hidden="true" tabindex="-1"></a>  the loading vector (i.e. <span class="in">`wisc.pr$rotation[,1]`</span>) for the feature</span>
+<span id="cb1-520"><a href="#cb1-520" aria-hidden="true" tabindex="-1"></a>  <span class="in">`concave.points_mean`</span>?</span>
+<span id="cb1-521"><a href="#cb1-521" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-522"><a href="#cb1-522" aria-hidden="true" tabindex="-1"></a><span class="in">      -0.26085376  is the component for first PC, concave.point_means</span></span>
+<span id="cb1-523"><a href="#cb1-523" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-524"><a href="#cb1-524" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-525"><a href="#cb1-525" aria-hidden="true" tabindex="-1"></a>wisc.pr<span class="sc">$</span>rotation[,<span class="dv">1</span>]</span>
+<span id="cb1-526"><a href="#cb1-526" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-527"><a href="#cb1-527" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-528"><a href="#cb1-528" aria-hidden="true" tabindex="-1"></a><span class="in">                radius_mean            texture_mean          perimeter_mean </span></span>
+<span id="cb1-529"><a href="#cb1-529" aria-hidden="true" tabindex="-1"></a><span class="in">                -0.21890244             -0.10372458             -0.22753729 </span></span>
+<span id="cb1-530"><a href="#cb1-530" aria-hidden="true" tabindex="-1"></a><span class="in">                  area_mean         smoothness_mean        compactness_mean </span></span>
+<span id="cb1-531"><a href="#cb1-531" aria-hidden="true" tabindex="-1"></a><span class="in">                -0.22099499             -0.14258969             -0.23928535 </span></span>
+<span id="cb1-532"><a href="#cb1-532" aria-hidden="true" tabindex="-1"></a><span class="in">             concavity_mean     concave.points_mean           symmetry_mean </span></span>
+<span id="cb1-533"><a href="#cb1-533" aria-hidden="true" tabindex="-1"></a><span class="in">                -0.25840048             -0.26085376             -0.13816696 </span></span>
+<span id="cb1-534"><a href="#cb1-534" aria-hidden="true" tabindex="-1"></a><span class="in">     fractal_dimension_mean               radius_se              texture_se </span></span>
+<span id="cb1-535"><a href="#cb1-535" aria-hidden="true" tabindex="-1"></a><span class="in">                -0.06436335             -0.20597878             -0.01742803 </span></span>
+<span id="cb1-536"><a href="#cb1-536" aria-hidden="true" tabindex="-1"></a><span class="in">               perimeter_se                 area_se           smoothness_se </span></span>
+<span id="cb1-537"><a href="#cb1-537" aria-hidden="true" tabindex="-1"></a><span class="in">                -0.21132592             -0.20286964             -0.01453145 </span></span>
+<span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a><span class="in">             compactness_se            concavity_se       concave.points_se </span></span>
+<span id="cb1-539"><a href="#cb1-539" aria-hidden="true" tabindex="-1"></a><span class="in">                -0.17039345             -0.15358979             -0.18341740 </span></span>
+<span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a><span class="in">                symmetry_se    fractal_dimension_se            radius_worst </span></span>
+<span id="cb1-541"><a href="#cb1-541" aria-hidden="true" tabindex="-1"></a><span class="in">                -0.04249842             -0.10256832             -0.22799663 </span></span>
+<span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a><span class="in">              texture_worst         perimeter_worst              area_worst </span></span>
+<span id="cb1-543"><a href="#cb1-543" aria-hidden="true" tabindex="-1"></a><span class="in">                -0.10446933             -0.23663968             -0.22487053 </span></span>
+<span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a><span class="in">           smoothness_worst       compactness_worst         concavity_worst </span></span>
+<span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a><span class="in">                -0.12795256             -0.21009588             -0.22876753 </span></span>
+<span id="cb1-546"><a href="#cb1-546" aria-hidden="true" tabindex="-1"></a><span class="in">       concave.points_worst          symmetry_worst fractal_dimension_worst </span></span>
+<span id="cb1-547"><a href="#cb1-547" aria-hidden="true" tabindex="-1"></a><span class="in">                -0.25088597             -0.12290456             -0.13178394 </span></span>
+<span id="cb1-548"><a href="#cb1-548" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-549"><a href="#cb1-549" aria-hidden="true" tabindex="-1"></a>Q10, We need at least PC5 to get 80% coverage</span>
+<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-551"><a href="#cb1-551" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a><span class="co"># Scale the wisc.data data using the &quot;scale()&quot; function</span></span>
+<span id="cb1-553"><a href="#cb1-553" aria-hidden="true" tabindex="-1"></a>data.scaled <span class="ot">&lt;-</span> <span class="fu">scale</span>(wisc.data)</span>
+<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a>data.dist <span class="ot">&lt;-</span> <span class="fu">dist</span>(data.scaled)</span>
+<span id="cb1-555"><a href="#cb1-555" aria-hidden="true" tabindex="-1"></a>wisc.hclust <span class="ot">&lt;-</span> <span class="fu">hclust</span>(data.dist,<span class="at">method=</span><span class="st">&quot;complete&quot;</span>)</span>
+<span id="cb1-556"><a href="#cb1-556" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wisc.hclust)</span>
+<span id="cb1-557"><a href="#cb1-557" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">20</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb1-558"><a href="#cb1-558" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-559"><a href="#cb1-559" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-560"><a href="#cb1-560" aria-hidden="true" tabindex="-1"></a><span class="al">![](miniProject_files/figure-commonmark/unnamed-chunk-19-1.png)</span></span>
+<span id="cb1-561"><a href="#cb1-561" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-562"><a href="#cb1-562" aria-hidden="true" tabindex="-1"></a>Q11: The height of 20</span>
+<span id="cb1-563"><a href="#cb1-563" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-564"><a href="#cb1-564" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-565"><a href="#cb1-565" aria-hidden="true" tabindex="-1"></a>wisc.hclust.clusters <span class="ot">&lt;-</span> <span class="fu">cutree</span>(wisc.hclust, <span class="dv">4</span>)</span>
+<span id="cb1-566"><a href="#cb1-566" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(wisc.hclust.clusters, diagnosis)</span>
+<span id="cb1-567"><a href="#cb1-567" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-568"><a href="#cb1-568" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-569"><a href="#cb1-569" aria-hidden="true" tabindex="-1"></a><span class="in">                        diagnosis</span></span>
+<span id="cb1-570"><a href="#cb1-570" aria-hidden="true" tabindex="-1"></a><span class="in">    wisc.hclust.clusters   B   M</span></span>
+<span id="cb1-571"><a href="#cb1-571" aria-hidden="true" tabindex="-1"></a><span class="in">                       1  12 165</span></span>
+<span id="cb1-572"><a href="#cb1-572" aria-hidden="true" tabindex="-1"></a><span class="in">                       2   2   5</span></span>
+<span id="cb1-573"><a href="#cb1-573" aria-hidden="true" tabindex="-1"></a><span class="in">                       3 343  40</span></span>
+<span id="cb1-574"><a href="#cb1-574" aria-hidden="true" tabindex="-1"></a><span class="in">                       4   0   2</span></span>
+<span id="cb1-575"><a href="#cb1-575" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-576"><a href="#cb1-576" aria-hidden="true" tabindex="-1"></a>**Q12.** Can you find a better cluster vs diagnoses match by cutting</span>
+<span id="cb1-577"><a href="#cb1-577" aria-hidden="true" tabindex="-1"></a>into a different number of clusters between 2 and 10? If cut at 10,</span>
+<span id="cb1-578"><a href="#cb1-578" aria-hidden="true" tabindex="-1"></a>cluster 1,2,5, yields better cluster for M cells whereas 4,7 yields</span>
+<span id="cb1-579"><a href="#cb1-579" aria-hidden="true" tabindex="-1"></a>better cluster for B cells</span>
+<span id="cb1-580"><a href="#cb1-580" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-581"><a href="#cb1-581" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-582"><a href="#cb1-582" aria-hidden="true" tabindex="-1"></a>wisc.hclust.clusters <span class="ot">&lt;-</span> <span class="fu">cutree</span>(wisc.hclust, <span class="dv">10</span>)</span>
+<span id="cb1-583"><a href="#cb1-583" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(wisc.hclust.clusters, diagnosis)</span>
+<span id="cb1-584"><a href="#cb1-584" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-585"><a href="#cb1-585" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-586"><a href="#cb1-586" aria-hidden="true" tabindex="-1"></a><span class="in">                        diagnosis</span></span>
+<span id="cb1-587"><a href="#cb1-587" aria-hidden="true" tabindex="-1"></a><span class="in">    wisc.hclust.clusters   B   M</span></span>
+<span id="cb1-588"><a href="#cb1-588" aria-hidden="true" tabindex="-1"></a><span class="in">                      1   12  86</span></span>
+<span id="cb1-589"><a href="#cb1-589" aria-hidden="true" tabindex="-1"></a><span class="in">                      2    0  59</span></span>
+<span id="cb1-590"><a href="#cb1-590" aria-hidden="true" tabindex="-1"></a><span class="in">                      3    0   3</span></span>
+<span id="cb1-591"><a href="#cb1-591" aria-hidden="true" tabindex="-1"></a><span class="in">                      4  331  39</span></span>
+<span id="cb1-592"><a href="#cb1-592" aria-hidden="true" tabindex="-1"></a><span class="in">                      5    0  20</span></span>
+<span id="cb1-593"><a href="#cb1-593" aria-hidden="true" tabindex="-1"></a><span class="in">                      6    2   0</span></span>
+<span id="cb1-594"><a href="#cb1-594" aria-hidden="true" tabindex="-1"></a><span class="in">                      7   12   0</span></span>
+<span id="cb1-595"><a href="#cb1-595" aria-hidden="true" tabindex="-1"></a><span class="in">                      8    0   2</span></span>
+<span id="cb1-596"><a href="#cb1-596" aria-hidden="true" tabindex="-1"></a><span class="in">                      9    0   2</span></span>
+<span id="cb1-597"><a href="#cb1-597" aria-hidden="true" tabindex="-1"></a><span class="in">                      10   0   1</span></span>
+<span id="cb1-598"><a href="#cb1-598" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-599"><a href="#cb1-599" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Q13.** Which method gives your favorite results for the same</span>
+<span id="cb1-600"><a href="#cb1-600" aria-hidden="true" tabindex="-1"></a>  <span class="in">`data.dist`</span> dataset? Explain your reasoning. Ward.D2 explain better</span>
+<span id="cb1-601"><a href="#cb1-601" aria-hidden="true" tabindex="-1"></a>  because it provide a better organization of the data. If you cut with</span>
+<span id="cb1-602"><a href="#cb1-602" aria-hidden="true" tabindex="-1"></a>  only two cluster, the result it still usable ( good cluster) compare</span>
+<span id="cb1-603"><a href="#cb1-603" aria-hidden="true" tabindex="-1"></a>  to the others</span>
+<span id="cb1-604"><a href="#cb1-604" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-605"><a href="#cb1-605" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-606"><a href="#cb1-606" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">hclust</span>(data.dist,<span class="at">method=</span><span class="st">&quot;single&quot;</span>))</span>
+<span id="cb1-607"><a href="#cb1-607" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-608"><a href="#cb1-608" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-609"><a href="#cb1-609" aria-hidden="true" tabindex="-1"></a><span class="al">![](miniProject_files/figure-commonmark/unnamed-chunk-22-1.png)</span></span>
+<span id="cb1-610"><a href="#cb1-610" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-611"><a href="#cb1-611" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-612"><a href="#cb1-612" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">hclust</span>(data.dist,<span class="at">method=</span><span class="st">&quot;complete&quot;</span>))</span>
+<span id="cb1-613"><a href="#cb1-613" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-614"><a href="#cb1-614" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-615"><a href="#cb1-615" aria-hidden="true" tabindex="-1"></a><span class="al">![](miniProject_files/figure-commonmark/unnamed-chunk-22-2.png)</span></span>
+<span id="cb1-616"><a href="#cb1-616" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-617"><a href="#cb1-617" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-618"><a href="#cb1-618" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">hclust</span>(data.dist,<span class="at">method=</span><span class="st">&quot;average&quot;</span>))</span>
+<span id="cb1-619"><a href="#cb1-619" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-620"><a href="#cb1-620" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-621"><a href="#cb1-621" aria-hidden="true" tabindex="-1"></a><span class="al">![](miniProject_files/figure-commonmark/unnamed-chunk-22-3.png)</span></span>
+<span id="cb1-622"><a href="#cb1-622" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-623"><a href="#cb1-623" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-624"><a href="#cb1-624" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">hclust</span>(data.dist,<span class="at">method=</span><span class="st">&quot;ward.D2&quot;</span>))</span>
+<span id="cb1-625"><a href="#cb1-625" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-626"><a href="#cb1-626" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-627"><a href="#cb1-627" aria-hidden="true" tabindex="-1"></a><span class="al">![](miniProject_files/figure-commonmark/unnamed-chunk-22-4.png)</span></span>
+<span id="cb1-628"><a href="#cb1-628" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-629"><a href="#cb1-629" aria-hidden="true" tabindex="-1"></a>Combining Methods</span>
+<span id="cb1-630"><a href="#cb1-630" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-631"><a href="#cb1-631" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-632"><a href="#cb1-632" aria-hidden="true" tabindex="-1"></a>wisc.pr.hclust<span class="ot">&lt;-</span> <span class="fu">hclust</span>(data.dist,<span class="at">method=</span><span class="st">&quot;ward.D2&quot;</span>)</span>
+<span id="cb1-633"><a href="#cb1-633" aria-hidden="true" tabindex="-1"></a>grps <span class="ot">&lt;-</span> <span class="fu">cutree</span>(wisc.pr.hclust, <span class="at">k=</span><span class="dv">2</span>)</span>
+<span id="cb1-634"><a href="#cb1-634" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wisc.pr<span class="sc">$</span>x[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">col=</span>grps)</span>
+<span id="cb1-635"><a href="#cb1-635" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-636"><a href="#cb1-636" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-637"><a href="#cb1-637" aria-hidden="true" tabindex="-1"></a><span class="al">![](miniProject_files/figure-commonmark/unnamed-chunk-23-1.png)</span></span>
+<span id="cb1-638"><a href="#cb1-638" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-639"><a href="#cb1-639" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-640"><a href="#cb1-640" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wisc.pr<span class="sc">$</span>x[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">col=</span><span class="fu">factor</span>(diagnosis))</span>
+<span id="cb1-641"><a href="#cb1-641" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-642"><a href="#cb1-642" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-643"><a href="#cb1-643" aria-hidden="true" tabindex="-1"></a><span class="al">![](miniProject_files/figure-commonmark/unnamed-chunk-23-2.png)</span></span>
+<span id="cb1-644"><a href="#cb1-644" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-645"><a href="#cb1-645" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-646"><a href="#cb1-646" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(grps)</span>
+<span id="cb1-647"><a href="#cb1-647" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(g)</span>
+<span id="cb1-648"><a href="#cb1-648" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-649"><a href="#cb1-649" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-650"><a href="#cb1-650" aria-hidden="true" tabindex="-1"></a><span class="in">    [1] &quot;1&quot; &quot;2&quot;</span></span>
+<span id="cb1-651"><a href="#cb1-651" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-652"><a href="#cb1-652" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-653"><a href="#cb1-653" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot using our re-ordered factor </span></span>
+<span id="cb1-654"><a href="#cb1-654" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wisc.pr<span class="sc">$</span>x[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">col=</span>g)</span>
+<span id="cb1-655"><a href="#cb1-655" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-656"><a href="#cb1-656" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-657"><a href="#cb1-657" aria-hidden="true" tabindex="-1"></a><span class="al">![](miniProject_files/figure-commonmark/unnamed-chunk-23-3.png)</span></span>
+<span id="cb1-658"><a href="#cb1-658" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-659"><a href="#cb1-659" aria-hidden="true" tabindex="-1"></a>Q 15: the new model have 188/(188+28) of B cells in Cluster 1 and</span>
+<span id="cb1-660"><a href="#cb1-660" aria-hidden="true" tabindex="-1"></a>329/(329+24) of M cells in Cluster 2.</span>
+<span id="cb1-661"><a href="#cb1-661" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-662"><a href="#cb1-662" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-663"><a href="#cb1-663" aria-hidden="true" tabindex="-1"></a><span class="do">## Use the distance along the first 7 PCs for clustering i.e. wisc.pr$x[, 1:7]</span></span>
+<span id="cb1-664"><a href="#cb1-664" aria-hidden="true" tabindex="-1"></a><span class="co"># Scale the wisc.data data using the &quot;scale()&quot; function</span></span>
+<span id="cb1-665"><a href="#cb1-665" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-666"><a href="#cb1-666" aria-hidden="true" tabindex="-1"></a>wisc.pr.hclust <span class="ot">&lt;-</span> <span class="fu">hclust</span>(<span class="fu">dist</span>(wisc.pr<span class="sc">$</span>x[, <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>]), <span class="at">method=</span><span class="st">&quot;ward.D2&quot;</span>)</span>
+<span id="cb1-667"><a href="#cb1-667" aria-hidden="true" tabindex="-1"></a>wisc.pr.hclust.clusters <span class="ot">&lt;-</span> <span class="fu">cutree</span>(wisc.pr.hclust, <span class="at">k=</span><span class="dv">2</span>)</span>
+<span id="cb1-668"><a href="#cb1-668" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wisc.pr.hclust)</span>
+<span id="cb1-669"><a href="#cb1-669" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-670"><a href="#cb1-670" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-671"><a href="#cb1-671" aria-hidden="true" tabindex="-1"></a><span class="al">![](miniProject_files/figure-commonmark/unnamed-chunk-24-1.png)</span></span>
+<span id="cb1-672"><a href="#cb1-672" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-673"><a href="#cb1-673" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb1-674"><a href="#cb1-674" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(wisc.pr.hclust.clusters,diagnosis)</span>
+<span id="cb1-675"><a href="#cb1-675" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-676"><a href="#cb1-676" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-677"><a href="#cb1-677" aria-hidden="true" tabindex="-1"></a><span class="in">                           diagnosis</span></span>
+<span id="cb1-678"><a href="#cb1-678" aria-hidden="true" tabindex="-1"></a><span class="in">    wisc.pr.hclust.clusters   B   M</span></span>
+<span id="cb1-679"><a href="#cb1-679" aria-hidden="true" tabindex="-1"></a><span class="in">                          1  28 188</span></span>
+<span id="cb1-680"><a href="#cb1-680" aria-hidden="true" tabindex="-1"></a><span class="in">                          2 329  24</span></span></code></pre></div>
+</body>
+</html>
+
+<div class="modal__dialog micromodal-slide" id="quarto-log-error-modal" aria-hidden="true">
+  <div class="modal__overlay" tabindex="2" data-micromodal-close>
+    <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="quarto-log-error-modal-title">
+      <header class="modal__header">
+        <h2 class="modal__title" id="quarto-log-error-modal-title">
+          <i class="bi bi-exclamation-circle"></i>Error
+        </h2>
+        <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+      </header>
+      <div class="modal__content" id="quarto-log-error-modal-content">
+        <pre tabindex="1" id="quarto-log-error-display"></pre>
+      </div>
+      <footer class="modal__footer">
+      </footer>
+    </div>
+  </div>
+</div>
+<style type="text/css">
+#quarto-log-error-modal .modal__overlay {
+  z-index: 5000;
+}
+#quarto-log-error-modal-content {
+  border: 1px solid #dee2e6;
+  overflow-y: auto;
+}
+#quarto-log-error-display {
+  min-height: 100px;
+  padding: 8px;
+  margin-bottom: 0;
+  font-family: monospace;
+}
+#quarto-log-error-display:focus {
+  outline: none;
+}
+.modal__dialog {
+  font-size: 16px;
+}
+.modal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal__container {
+  position: fixed;
+  top: 80px;
+  background-color: #fff;
+  padding: 15px;
+  padding-top: 10px;
+  min-width: 500px;
+  max-width: 90%;
+  max-height: 90vh;
+  border-radius: 4px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal__title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 600;
+  border-bottom: none;
+  padding-bottom: 10px;
+  font-size: 20px;
+  color: rgb(191,71,65);
+  line-height: 1.25;
+  box-sizing: border-box;
+}
+.modal__title .bi {
+  margin-right: 7px;
+}
+.modal__close {
+  background: transparent;
+  border: 0;
+  margin-bottom: 10px;
+}
+.modal__header .modal__close:before { content: "\2715"; }
+.modal__content {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+@keyframes mmfadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+@keyframes mmfadeOut {
+    from { opacity: 1; }
+      to { opacity: 0; }
+}
+@keyframes mmslideIn {
+  from { transform: translateY(15%); }
+    to { transform: translateY(0); }
+}
+@keyframes mmslideOut {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10%); }
+}
+.micromodal-slide {
+  display: none;
+}
+.micromodal-slide.is-open {
+  display: block;
+}
+.micromodal-slide[aria-hidden="false"] .modal__overlay {
+  animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+.micromodal-slide[aria-hidden="false"] .modal__container {
+  animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);
+}
+.micromodal-slide[aria-hidden="true"] .modal__overlay {
+  animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+.micromodal-slide[aria-hidden="true"] .modal__container {
+  animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);
+}
+.micromodal-slide .modal__container,
+.micromodal-slide .modal__overlay {
+  will-change: transform;
+} 
+</style>
+<script type="text/javascript">
+  window.backupDefine = window.define; window.define = undefined;
+  /*  ansi_up.js
+   *  author : Dru Nelson
+   *  license : MIT
+   *  http://github.com/drudru/ansi_up
+   */
+   (function (root, factory) {
+      if (typeof define === 'function' && define.amd) {
+          // AMD. Register as an anonymous module.
+          define(['exports'], factory);
+      } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
+          // CommonJS
+          factory(exports);
+      } else {
+          // Browser globals
+          var exp = {};
+          factory(exp);
+          root.AnsiUp = exp.default;
+      }
+  }(this, function (exports) {
+  "use strict";
+  var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
+      if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+      return cooked;
+  };
+  var PacketKind;
+  (function (PacketKind) {
+      PacketKind[PacketKind["EOS"] = 0] = "EOS";
+      PacketKind[PacketKind["Text"] = 1] = "Text";
+      PacketKind[PacketKind["Incomplete"] = 2] = "Incomplete";
+      PacketKind[PacketKind["ESC"] = 3] = "ESC";
+      PacketKind[PacketKind["Unknown"] = 4] = "Unknown";
+      PacketKind[PacketKind["SGR"] = 5] = "SGR";
+      PacketKind[PacketKind["OSCURL"] = 6] = "OSCURL";
+  })(PacketKind || (PacketKind = {}));
+  var AnsiUp = (function () {
+      function AnsiUp() {
+          this.VERSION = "5.1.0";
+          this.setup_palettes();
+          this._use_classes = false;
+          this.bold = false;
+          this.italic = false;
+          this.underline = false;
+          this.fg = this.bg = null;
+          this._buffer = '';
+          this._url_whitelist = { 'http': 1, 'https': 1 };
+      }
+      Object.defineProperty(AnsiUp.prototype, "use_classes", {
+          get: function () {
+              return this._use_classes;
+          },
+          set: function (arg) {
+              this._use_classes = arg;
+          },
+          enumerable: false,
+          configurable: true
+      });
+      Object.defineProperty(AnsiUp.prototype, "url_whitelist", {
+          get: function () {
+              return this._url_whitelist;
+          },
+          set: function (arg) {
+              this._url_whitelist = arg;
+          },
+          enumerable: false,
+          configurable: true
+      });
+      AnsiUp.prototype.setup_palettes = function () {
+          var _this = this;
+          this.ansi_colors =
+              [
+                  [
+                      { rgb: [0, 0, 0], class_name: "ansi-black" },
+                      { rgb: [187, 0, 0], class_name: "ansi-red" },
+                      { rgb: [0, 187, 0], class_name: "ansi-green" },
+                      { rgb: [187, 187, 0], class_name: "ansi-yellow" },
+                      { rgb: [0, 0, 187], class_name: "ansi-blue" },
+                      { rgb: [187, 0, 187], class_name: "ansi-magenta" },
+                      { rgb: [0, 187, 187], class_name: "ansi-cyan" },
+                      { rgb: [255, 255, 255], class_name: "ansi-white" }
+                  ],
+                  [
+                      { rgb: [85, 85, 85], class_name: "ansi-bright-black" },
+                      { rgb: [255, 85, 85], class_name: "ansi-bright-red" },
+                      { rgb: [0, 255, 0], class_name: "ansi-bright-green" },
+                      { rgb: [255, 255, 85], class_name: "ansi-bright-yellow" },
+                      { rgb: [85, 85, 255], class_name: "ansi-bright-blue" },
+                      { rgb: [255, 85, 255], class_name: "ansi-bright-magenta" },
+                      { rgb: [85, 255, 255], class_name: "ansi-bright-cyan" },
+                      { rgb: [255, 255, 255], class_name: "ansi-bright-white" }
+                  ]
+              ];
+          this.palette_256 = [];
+          this.ansi_colors.forEach(function (palette) {
+              palette.forEach(function (rec) {
+                  _this.palette_256.push(rec);
+              });
+          });
+          var levels = [0, 95, 135, 175, 215, 255];
+          for (var r = 0; r < 6; ++r) {
+              for (var g = 0; g < 6; ++g) {
+                  for (var b = 0; b < 6; ++b) {
+                      var col = { rgb: [levels[r], levels[g], levels[b]], class_name: 'truecolor' };
+                      this.palette_256.push(col);
+                  }
+              }
+          }
+          var grey_level = 8;
+          for (var i = 0; i < 24; ++i, grey_level += 10) {
+              var gry = { rgb: [grey_level, grey_level, grey_level], class_name: 'truecolor' };
+              this.palette_256.push(gry);
+          }
+      };
+      AnsiUp.prototype.escape_txt_for_html = function (txt) {
+          return txt.replace(/[&<>"']/gm, function (str) {
+              if (str === "&")
+                  return "&amp;";
+              if (str === "<")
+                  return "&lt;";
+              if (str === ">")
+                  return "&gt;";
+              if (str === "\"")
+                  return "&quot;";
+              if (str === "'")
+                  return "&#x27;";
+          });
+      };
+      AnsiUp.prototype.append_buffer = function (txt) {
+          var str = this._buffer + txt;
+          this._buffer = str;
+      };
+      AnsiUp.prototype.get_next_packet = function () {
+          var pkt = {
+              kind: PacketKind.EOS,
+              text: '',
+              url: ''
+          };
+          var len = this._buffer.length;
+          if (len == 0)
+              return pkt;
+          var pos = this._buffer.indexOf("\x1B");
+          if (pos == -1) {
+              pkt.kind = PacketKind.Text;
+              pkt.text = this._buffer;
+              this._buffer = '';
+              return pkt;
+          }
+          if (pos > 0) {
+              pkt.kind = PacketKind.Text;
+              pkt.text = this._buffer.slice(0, pos);
+              this._buffer = this._buffer.slice(pos);
+              return pkt;
+          }
+          if (pos == 0) {
+              if (len == 1) {
+                  pkt.kind = PacketKind.Incomplete;
+                  return pkt;
+              }
+              var next_char = this._buffer.charAt(1);
+              if ((next_char != '[') && (next_char != ']')) {
+                  pkt.kind = PacketKind.ESC;
+                  pkt.text = this._buffer.slice(0, 1);
+                  this._buffer = this._buffer.slice(1);
+                  return pkt;
+              }
+              if (next_char == '[') {
+                  if (!this._csi_regex) {
+                      this._csi_regex = rgx(__makeTemplateObject(["\n                        ^                           # beginning of line\n                                                    #\n                                                    # First attempt\n                        (?:                         # legal sequence\n                          \u001B[                      # CSI\n                          ([<-?]?)              # private-mode char\n                          ([d;]*)                    # any digits or semicolons\n                          ([ -/]?               # an intermediate modifier\n                          [@-~])                # the command\n                        )\n                        |                           # alternate (second attempt)\n                        (?:                         # illegal sequence\n                          \u001B[                      # CSI\n                          [ -~]*                # anything legal\n                          ([\0-\u001F:])              # anything illegal\n                        )\n                    "], ["\n                        ^                           # beginning of line\n                                                    #\n                                                    # First attempt\n                        (?:                         # legal sequence\n                          \\x1b\\[                      # CSI\n                          ([\\x3c-\\x3f]?)              # private-mode char\n                          ([\\d;]*)                    # any digits or semicolons\n                          ([\\x20-\\x2f]?               # an intermediate modifier\n                          [\\x40-\\x7e])                # the command\n                        )\n                        |                           # alternate (second attempt)\n                        (?:                         # illegal sequence\n                          \\x1b\\[                      # CSI\n                          [\\x20-\\x7e]*                # anything legal\n                          ([\\x00-\\x1f:])              # anything illegal\n                        )\n                    "]));
+                  }
+                  var match = this._buffer.match(this._csi_regex);
+                  if (match === null) {
+                      pkt.kind = PacketKind.Incomplete;
+                      return pkt;
+                  }
+                  if (match[4]) {
+                      pkt.kind = PacketKind.ESC;
+                      pkt.text = this._buffer.slice(0, 1);
+                      this._buffer = this._buffer.slice(1);
+                      return pkt;
+                  }
+                  if ((match[1] != '') || (match[3] != 'm'))
+                      pkt.kind = PacketKind.Unknown;
+                  else
+                      pkt.kind = PacketKind.SGR;
+                  pkt.text = match[2];
+                  var rpos = match[0].length;
+                  this._buffer = this._buffer.slice(rpos);
+                  return pkt;
+              }
+              if (next_char == ']') {
+                  if (len < 4) {
+                      pkt.kind = PacketKind.Incomplete;
+                      return pkt;
+                  }
+                  if ((this._buffer.charAt(2) != '8')
+                      || (this._buffer.charAt(3) != ';')) {
+                      pkt.kind = PacketKind.ESC;
+                      pkt.text = this._buffer.slice(0, 1);
+                      this._buffer = this._buffer.slice(1);
+                      return pkt;
+                  }
+                  if (!this._osc_st) {
+                      this._osc_st = rgxG(__makeTemplateObject(["\n                        (?:                         # legal sequence\n                          (\u001B\\)                    # ESC                           |                           # alternate\n                          (\u0007)                      # BEL (what xterm did)\n                        )\n                        |                           # alternate (second attempt)\n                        (                           # illegal sequence\n                          [\0-\u0006]                 # anything illegal\n                          |                           # alternate\n                          [\b-\u001A]                 # anything illegal\n                          |                           # alternate\n                          [\u001C-\u001F]                 # anything illegal\n                        )\n                    "], ["\n                        (?:                         # legal sequence\n                          (\\x1b\\\\)                    # ESC \\\n                          |                           # alternate\n                          (\\x07)                      # BEL (what xterm did)\n                        )\n                        |                           # alternate (second attempt)\n                        (                           # illegal sequence\n                          [\\x00-\\x06]                 # anything illegal\n                          |                           # alternate\n                          [\\x08-\\x1a]                 # anything illegal\n                          |                           # alternate\n                          [\\x1c-\\x1f]                 # anything illegal\n                        )\n                    "]));
+                  }
+                  this._osc_st.lastIndex = 0;
+                  {
+                      var match_1 = this._osc_st.exec(this._buffer);
+                      if (match_1 === null) {
+                          pkt.kind = PacketKind.Incomplete;
+                          return pkt;
+                      }
+                      if (match_1[3]) {
+                          pkt.kind = PacketKind.ESC;
+                          pkt.text = this._buffer.slice(0, 1);
+                          this._buffer = this._buffer.slice(1);
+                          return pkt;
+                      }
+                  }
+                  {
+                      var match_2 = this._osc_st.exec(this._buffer);
+                      if (match_2 === null) {
+                          pkt.kind = PacketKind.Incomplete;
+                          return pkt;
+                      }
+                      if (match_2[3]) {
+                          pkt.kind = PacketKind.ESC;
+                          pkt.text = this._buffer.slice(0, 1);
+                          this._buffer = this._buffer.slice(1);
+                          return pkt;
+                      }
+                  }
+                  if (!this._osc_regex) {
+                      this._osc_regex = rgx(__makeTemplateObject(["\n                        ^                           # beginning of line\n                                                    #\n                        \u001B]8;                    # OSC Hyperlink\n                        [ -:<-~]*       # params (excluding ;)\n                        ;                           # end of params\n                        ([!-~]{0,512})        # URL capture\n                        (?:                         # ST\n                          (?:\u001B\\)                  # ESC                           |                           # alternate\n                          (?:\u0007)                    # BEL (what xterm did)\n                        )\n                        ([ -~]+)              # TEXT capture\n                        \u001B]8;;                   # OSC Hyperlink End\n                        (?:                         # ST\n                          (?:\u001B\\)                  # ESC                           |                           # alternate\n                          (?:\u0007)                    # BEL (what xterm did)\n                        )\n                    "], ["\n                        ^                           # beginning of line\n                                                    #\n                        \\x1b\\]8;                    # OSC Hyperlink\n                        [\\x20-\\x3a\\x3c-\\x7e]*       # params (excluding ;)\n                        ;                           # end of params\n                        ([\\x21-\\x7e]{0,512})        # URL capture\n                        (?:                         # ST\n                          (?:\\x1b\\\\)                  # ESC \\\n                          |                           # alternate\n                          (?:\\x07)                    # BEL (what xterm did)\n                        )\n                        ([\\x20-\\x7e]+)              # TEXT capture\n                        \\x1b\\]8;;                   # OSC Hyperlink End\n                        (?:                         # ST\n                          (?:\\x1b\\\\)                  # ESC \\\n                          |                           # alternate\n                          (?:\\x07)                    # BEL (what xterm did)\n                        )\n                    "]));
+                  }
+                  var match = this._buffer.match(this._osc_regex);
+                  if (match === null) {
+                      pkt.kind = PacketKind.ESC;
+                      pkt.text = this._buffer.slice(0, 1);
+                      this._buffer = this._buffer.slice(1);
+                      return pkt;
+                  }
+                  pkt.kind = PacketKind.OSCURL;
+                  pkt.url = match[1];
+                  pkt.text = match[2];
+                  var rpos = match[0].length;
+                  this._buffer = this._buffer.slice(rpos);
+                  return pkt;
+              }
+          }
+      };
+      AnsiUp.prototype.ansi_to_html = function (txt) {
+          this.append_buffer(txt);
+          var blocks = [];
+          while (true) {
+              var packet = this.get_next_packet();
+              if ((packet.kind == PacketKind.EOS)
+                  || (packet.kind == PacketKind.Incomplete))
+                  break;
+              if ((packet.kind == PacketKind.ESC)
+                  || (packet.kind == PacketKind.Unknown))
+                  continue;
+              if (packet.kind == PacketKind.Text)
+                  blocks.push(this.transform_to_html(this.with_state(packet)));
+              else if (packet.kind == PacketKind.SGR)
+                  this.process_ansi(packet);
+              else if (packet.kind == PacketKind.OSCURL)
+                  blocks.push(this.process_hyperlink(packet));
+          }
+          return blocks.join("");
+      };
+      AnsiUp.prototype.with_state = function (pkt) {
+          return { bold: this.bold, italic: this.italic, underline: this.underline, fg: this.fg, bg: this.bg, text: pkt.text };
+      };
+      AnsiUp.prototype.process_ansi = function (pkt) {
+          var sgr_cmds = pkt.text.split(';');
+          while (sgr_cmds.length > 0) {
+              var sgr_cmd_str = sgr_cmds.shift();
+              var num = parseInt(sgr_cmd_str, 10);
+              if (isNaN(num) || num === 0) {
+                  this.fg = this.bg = null;
+                  this.bold = false;
+                  this.italic = false;
+                  this.underline = false;
+              }
+              else if (num === 1) {
+                  this.bold = true;
+              }
+              else if (num === 3) {
+                  this.italic = true;
+              }
+              else if (num === 4) {
+                  this.underline = true;
+              }
+              else if (num === 22) {
+                  this.bold = false;
+              }
+              else if (num === 23) {
+                  this.italic = false;
+              }
+              else if (num === 24) {
+                  this.underline = false;
+              }
+              else if (num === 39) {
+                  this.fg = null;
+              }
+              else if (num === 49) {
+                  this.bg = null;
+              }
+              else if ((num >= 30) && (num < 38)) {
+                  this.fg = this.ansi_colors[0][(num - 30)];
+              }
+              else if ((num >= 40) && (num < 48)) {
+                  this.bg = this.ansi_colors[0][(num - 40)];
+              }
+              else if ((num >= 90) && (num < 98)) {
+                  this.fg = this.ansi_colors[1][(num - 90)];
+              }
+              else if ((num >= 100) && (num < 108)) {
+                  this.bg = this.ansi_colors[1][(num - 100)];
+              }
+              else if (num === 38 || num === 48) {
+                  if (sgr_cmds.length > 0) {
+                      var is_foreground = (num === 38);
+                      var mode_cmd = sgr_cmds.shift();
+                      if (mode_cmd === '5' && sgr_cmds.length > 0) {
+                          var palette_index = parseInt(sgr_cmds.shift(), 10);
+                          if (palette_index >= 0 && palette_index <= 255) {
+                              if (is_foreground)
+                                  this.fg = this.palette_256[palette_index];
+                              else
+                                  this.bg = this.palette_256[palette_index];
+                          }
+                      }
+                      if (mode_cmd === '2' && sgr_cmds.length > 2) {
+                          var r = parseInt(sgr_cmds.shift(), 10);
+                          var g = parseInt(sgr_cmds.shift(), 10);
+                          var b = parseInt(sgr_cmds.shift(), 10);
+                          if ((r >= 0 && r <= 255) && (g >= 0 && g <= 255) && (b >= 0 && b <= 255)) {
+                              var c = { rgb: [r, g, b], class_name: 'truecolor' };
+                              if (is_foreground)
+                                  this.fg = c;
+                              else
+                                  this.bg = c;
+                          }
+                      }
+                  }
+              }
+          }
+      };
+      AnsiUp.prototype.transform_to_html = function (fragment) {
+          var txt = fragment.text;
+          if (txt.length === 0)
+              return txt;
+          txt = this.escape_txt_for_html(txt);
+          if (!fragment.bold && !fragment.italic && !fragment.underline && fragment.fg === null && fragment.bg === null)
+              return txt;
+          var styles = [];
+          var classes = [];
+          var fg = fragment.fg;
+          var bg = fragment.bg;
+          if (fragment.bold)
+              styles.push('font-weight:bold');
+          if (fragment.italic)
+              styles.push('font-style:italic');
+          if (fragment.underline)
+              styles.push('text-decoration:underline');
+          if (!this._use_classes) {
+              if (fg)
+                  styles.push("color:rgb(" + fg.rgb.join(',') + ")");
+              if (bg)
+                  styles.push("background-color:rgb(" + bg.rgb + ")");
+          }
+          else {
+              if (fg) {
+                  if (fg.class_name !== 'truecolor') {
+                      classes.push(fg.class_name + "-fg");
+                  }
+                  else {
+                      styles.push("color:rgb(" + fg.rgb.join(',') + ")");
+                  }
+              }
+              if (bg) {
+                  if (bg.class_name !== 'truecolor') {
+                      classes.push(bg.class_name + "-bg");
+                  }
+                  else {
+                      styles.push("background-color:rgb(" + bg.rgb.join(',') + ")");
+                  }
+              }
+          }
+          var class_string = '';
+          var style_string = '';
+          if (classes.length)
+              class_string = " class=\"" + classes.join(' ') + "\"";
+          if (styles.length)
+              style_string = " style=\"" + styles.join(';') + "\"";
+          return "<span" + style_string + class_string + ">" + txt + "</span>";
+      };
+      ;
+      AnsiUp.prototype.process_hyperlink = function (pkt) {
+          var parts = pkt.url.split(':');
+          if (parts.length < 1)
+              return '';
+          if (!this._url_whitelist[parts[0]])
+              return '';
+          var result = "<a href=\"" + this.escape_txt_for_html(pkt.url) + "\">" + this.escape_txt_for_html(pkt.text) + "</a>";
+          return result;
+      };
+      return AnsiUp;
+  }());
+  function rgx(tmplObj) {
+      var subst = [];
+      for (var _i = 1; _i < arguments.length; _i++) {
+          subst[_i - 1] = arguments[_i];
+      }
+      var regexText = tmplObj.raw[0];
+      var wsrgx = /^\s+|\s+\n|\s*#[\s\S]*?\n|\n/gm;
+      var txt2 = regexText.replace(wsrgx, '');
+      return new RegExp(txt2);
+  }
+  function rgxG(tmplObj) {
+      var subst = [];
+      for (var _i = 1; _i < arguments.length; _i++) {
+          subst[_i - 1] = arguments[_i];
+      }
+      var regexText = tmplObj.raw[0];
+      var wsrgx = /^\s+|\s+\n|\s*#[\s\S]*?\n|\n/gm;
+      var txt2 = regexText.replace(wsrgx, '');
+      return new RegExp(txt2, 'g');
+  }
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.default = AnsiUp;
+  }));
+  // micromodal: https://github.com/Ghosh/micromodal
+  !function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):(e="undefined"!=typeof globalThis?globalThis:e||self).MicroModal=t()}(this,(function(){"use strict";function e(e,t){for(var o=0;o<t.length;o++){var n=t[o];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function t(e){return function(e){if(Array.isArray(e))return o(e)}(e)||function(e){if("undefined"!=typeof Symbol&&Symbol.iterator in Object(e))return Array.from(e)}(e)||function(e,t){if(!e)return;if("string"==typeof e)return o(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);"Object"===n&&e.constructor&&(n=e.constructor.name);if("Map"===n||"Set"===n)return Array.from(e);if("Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))return o(e,t)}(e)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function o(e,t){(null==t||t>e.length)&&(t=e.length);for(var o=0,n=new Array(t);o<t;o++)n[o]=e[o];return n}var n,i,a,r,s,l=(n=["a[href]","area[href]",'input:not([disabled]):not([type="hidden"]):not([aria-hidden])',"select:not([disabled]):not([aria-hidden])","textarea:not([disabled]):not([aria-hidden])","button:not([disabled]):not([aria-hidden])","iframe","object","embed","[contenteditable]",'[tabindex]:not([tabindex^="-"])'],i=function(){function o(e){var n=e.targetModal,i=e.triggers,a=void 0===i?[]:i,r=e.onShow,s=void 0===r?function(){}:r,l=e.onClose,c=void 0===l?function(){}:l,d=e.openTrigger,u=void 0===d?"data-micromodal-trigger":d,f=e.closeTrigger,h=void 0===f?"data-micromodal-close":f,v=e.openClass,g=void 0===v?"is-open":v,m=e.disableScroll,b=void 0!==m&&m,y=e.disableFocus,p=void 0!==y&&y,w=e.awaitCloseAnimation,E=void 0!==w&&w,k=e.awaitOpenAnimation,M=void 0!==k&&k,A=e.debugMode,C=void 0!==A&&A;!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,o),this.modal=document.getElementById(n),this.config={debugMode:C,disableScroll:b,openTrigger:u,closeTrigger:h,openClass:g,onShow:s,onClose:c,awaitCloseAnimation:E,awaitOpenAnimation:M,disableFocus:p},a.length>0&&this.registerTriggers.apply(this,t(a)),this.onClick=this.onClick.bind(this),this.onKeydown=this.onKeydown.bind(this)}var i,a,r;return i=o,(a=[{key:"registerTriggers",value:function(){for(var e=this,t=arguments.length,o=new Array(t),n=0;n<t;n++)o[n]=arguments[n];o.filter(Boolean).forEach((function(t){t.addEventListener("click",(function(t){return e.showModal(t)}))}))}},{key:"showModal",value:function(){var e=this,t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null;if(this.activeElement=document.activeElement,this.modal.setAttribute("aria-hidden","false"),this.modal.classList.add(this.config.openClass),this.scrollBehaviour("disable"),this.addEventListeners(),this.config.awaitOpenAnimation){var o=function t(){e.modal.removeEventListener("animationend",t,!1),e.setFocusToFirstNode()};this.modal.addEventListener("animationend",o,!1)}else this.setFocusToFirstNode();this.config.onShow(this.modal,this.activeElement,t)}},{key:"closeModal",value:function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null,t=this.modal;if(this.modal.setAttribute("aria-hidden","true"),this.removeEventListeners(),this.scrollBehaviour("enable"),this.activeElement&&this.activeElement.focus&&this.activeElement.focus(),this.config.onClose(this.modal,this.activeElement,e),this.config.awaitCloseAnimation){var o=this.config.openClass;this.modal.addEventListener("animationend",(function e(){t.classList.remove(o),t.removeEventListener("animationend",e,!1)}),!1)}else t.classList.remove(this.config.openClass)}},{key:"closeModalById",value:function(e){this.modal=document.getElementById(e),this.modal&&this.closeModal()}},{key:"scrollBehaviour",value:function(e){if(this.config.disableScroll){var t=document.querySelector("body");switch(e){case"enable":Object.assign(t.style,{overflow:""});break;case"disable":Object.assign(t.style,{overflow:"hidden"})}}}},{key:"addEventListeners",value:function(){this.modal.addEventListener("touchstart",this.onClick),this.modal.addEventListener("click",this.onClick),document.addEventListener("keydown",this.onKeydown)}},{key:"removeEventListeners",value:function(){this.modal.removeEventListener("touchstart",this.onClick),this.modal.removeEventListener("click",this.onClick),document.removeEventListener("keydown",this.onKeydown)}},{key:"onClick",value:function(e){(e.target.hasAttribute(this.config.closeTrigger)||e.target.parentNode.hasAttribute(this.config.closeTrigger))&&(e.preventDefault(),e.stopPropagation(),this.closeModal(e))}},{key:"onKeydown",value:function(e){27===e.keyCode&&this.closeModal(e),9===e.keyCode&&this.retainFocus(e)}},{key:"getFocusableNodes",value:function(){var e=this.modal.querySelectorAll(n);return Array.apply(void 0,t(e))}},{key:"setFocusToFirstNode",value:function(){var e=this;if(!this.config.disableFocus){var t=this.getFocusableNodes();if(0!==t.length){var o=t.filter((function(t){return!t.hasAttribute(e.config.closeTrigger)}));o.length>0&&o[0].focus(),0===o.length&&t[0].focus()}}}},{key:"retainFocus",value:function(e){var t=this.getFocusableNodes();if(0!==t.length)if(t=t.filter((function(e){return null!==e.offsetParent})),this.modal.contains(document.activeElement)){var o=t.indexOf(document.activeElement);e.shiftKey&&0===o&&(t[t.length-1].focus(),e.preventDefault()),!e.shiftKey&&t.length>0&&o===t.length-1&&(t[0].focus(),e.preventDefault())}else t[0].focus()}}])&&e(i.prototype,a),r&&e(i,r),o}(),a=null,r=function(e){if(!document.getElementById(e))return console.warn("MicroModal: ❗Seems like you have missed %c'".concat(e,"'"),"background-color: #f8f9fa;color: #50596c;font-weight: bold;","ID somewhere in your code. Refer example below to resolve it."),console.warn("%cExample:","background-color: #f8f9fa;color: #50596c;font-weight: bold;",'<div class="modal" id="'.concat(e,'"></div>')),!1},s=function(e,t){if(function(e){e.length<=0&&(console.warn("MicroModal: ❗Please specify at least one %c'micromodal-trigger'","background-color: #f8f9fa;color: #50596c;font-weight: bold;","data attribute."),console.warn("%cExample:","background-color: #f8f9fa;color: #50596c;font-weight: bold;",'<a href="#" data-micromodal-trigger="my-modal"></a>'))}(e),!t)return!0;for(var o in t)r(o);return!0},{init:function(e){var o=Object.assign({},{openTrigger:"data-micromodal-trigger"},e),n=t(document.querySelectorAll("[".concat(o.openTrigger,"]"))),r=function(e,t){var o=[];return e.forEach((function(e){var n=e.attributes[t].value;void 0===o[n]&&(o[n]=[]),o[n].push(e)})),o}(n,o.openTrigger);if(!0!==o.debugMode||!1!==s(n,r))for(var l in r){var c=r[l];o.targetModal=l,o.triggers=t(c),a=new i(o)}},show:function(e,t){var o=t||{};o.targetModal=e,!0===o.debugMode&&!1===r(e)||(a&&a.removeEventListeners(),(a=new i(o)).showModal())},close:function(e){e?a.closeModalById(e):a.closeModal()}});return"undefined"!=typeof window&&(window.MicroModal=l),l}));  
+  window.define = window.backupDefine; window.backupDefine = undefined;
+  </script>
+<script type="text/javascript">
+  (function () {
+    // forward keydown events so shortcuts can work in vscode, see:
+    // https://github.com/microsoft/vscode/issues/65452#issuecomment-586485815
+    if (window.parent.postMessage) {
+      window.document.addEventListener('keydown', e => {
+        const event = {
+          type: "keydown",
+          data: {
+            altKey: e.altKey,
+            code: e.code,
+            ctrlKey: e.ctrlKey,
+            isComposing: e.isComposing,
+            key: e.key,
+            location: e.location,
+            metaKey: e.metaKey,
+            repeat: e.repeat,
+            shiftKey: e.shiftKey
+          }
+        };
+        window.parent.postMessage(event, '*');
+      });
+    }
+    // listen for execCommand messages
+    window.addEventListener("message", function (event) {
+      if (event.data.type === "devhost-exec-command") {
+        window.document.execCommand(event.data.data);
+      } 
+    }, true);
+    const logEntries = new Array(1000);
+    logEntries.offset = 0;
+    function recordLogEntry(entry) {
+      logEntries[logEntries.offset++] = entry;
+      logEntries.offset %= logEntries.length;
+    }
+    function getLogEntry(i) { // backwards, 0 is most recent
+        return logEntries[(logEntries.offset - 1 - i + logEntries.length) % logEntries.length];
+    }
+    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+    let path = window.location.pathname;
+    if (!/\/$/.test(path)) path += "/";
+    const devServerSocket = new WebSocket(protocol + "//" + window.location.host + path);
+    let reloadPage = true;
+    addEventListener("beforeunload", () => {
+      // don't reload page in case of navigation events
+      reloadPage = false;
+    })
+    devServerSocket.onopen = () => {
+      console.log('Socket connection open. Listening for events.');
+      // if the socket closes for any reason (e.g. this occurs in electron apps
+      // when the computer suspends) then reload to reestablish the connection 
+      devServerSocket.onclose = () => {
+        if (reloadPage) {
+          console.log('Socket connection closed. Reloading.');
+          window.location.reload(true);
+        }
+      }
+    };
+    // append for errors that occur within the error window
+    let lastError = 0;
+    const kErrorWindow = 2500;
+    function showError(msg) {
+      const ansiUp = new AnsiUp
+      const html = ansiUp.ansi_to_html(msg.trim());
+      const display = document.getElementById("quarto-log-error-display");
+      if (display.innerHTML && ((Date.now() - lastError) < kErrorWindow)) {
+        display.innerHTML = display.innerHTML + "<br/>" +  html;
+      } else {
+        display.innerHTML = html
+      }
+      lastError = Date.now()
+      MicroModal.show('quarto-log-error-modal', {
+        awaitCloseAnimation: true,
+        onClose: () => { display.innerHTML = ""; }
+      });
+      // post message to parent indicating we had an error
+      if (window.parent.postMessage) {
+        window.parent.postMessage({
+          type: "error",
+          msg: msg,
+        }, "*");
+      }
+    }
+    // see if there is already an error to show
+    const renderError = document.getElementById("quarto-render-error");
+    if (renderError) {
+      showError(renderError.innerHTML.trim());
+    }
+    const normalizeTarget = (target) => {
+      return target.replace(/\/index\.html/, "/")
+    };
+    devServerSocket.onmessage = (msg) => {
+      if (msg.data.startsWith('reload')) {
+        let target = normalizeTarget(msg.data.replace(/^reload/, ""));
+        // prepend proxy path to target if we have one
+        if (target) {
+          const pathPrefix = 
+            window.location.pathname.match(/^.*?\/p\/\w+\//) ||
+            window.location.pathname.match(/^.*?\/user\/[\w\d]+\/proxy\/\d+\//);
+          if (pathPrefix) {
+            target = pathPrefix + target.slice(1);
+          }
+        }
+        if (target && (target !== normalizeTarget(window.location.pathname))) {
+          window.location.replace(target);
+        } else {
+          window.location.reload(true);
+        }
+      } else if (msg.data.startsWith('log:')) {
+        const ansiUp = new AnsiUp
+        const log = JSON.parse(msg.data.substr(4));
+        recordLogEntry(log);
+        if (log.levelName === "ERROR") {
+          showError(log.msgFormatted)
+        } else {
+          // see if there is a knitr error to report
+          const kExecutionHalted = "Execution halted";
+          if (log.msg.indexOf(kExecutionHalted) !== -1) {
+            // scan backwards for beginning of error
+            const errorEntries = [getLogEntry(0).msgFormatted];
+            for (let i=1; i<logEntries.length; i++) {
+              const logEntry = getLogEntry(i);
+              if (logEntry) {
+                errorEntries.unshift(logEntry.msgFormatted);
+                if (logEntry.msg.indexOf("Quitting from lines") !== -1) {
+                  showError(errorEntries.join(""));
+                  break;
+                } else if (logEntry.msg.indexOf(kExecutionHalted) !== -1) {
+                  break;
+                }
+              } else {
+                break;
+              }
+            }
+          }
+        }
+      }
+    };
+  })();
+</script>
+
+<script type="text/javascript">
+  if (window.parent.postMessage) {
+    // wait for message providing confirmation we are in a devhost
+    window.addEventListener("message", function (event) {
+      if (event.data.type === "devhost-init") {
+        window.quartoDevhost = {
+          openInputFile: function (line, column, highlight) {
+            window.parent.postMessage({
+              type: "openfile",
+              file: "/Users/chan-yukuo/Desktop/bimm143/mini-project/miniProject.qmd",
+              line: line,
+              column: column,
+              highlight: highlight
+            }, event.origin);
+          }
+        };
+      } else if (event.data.type === "goback") {
+        window.history.back()
+      } else if (event.data.type === "goforward") {
+        window.history.forward()
+      }
+    }, true);
+    // notify host of navigation (e.g. for 'pop out' command)
+    window.parent.postMessage({
+      type: "navigate",
+      href: window.location.href,
+      file: "/Users/chan-yukuo/Desktop/bimm143/mini-project/miniProject.qmd"
+    }, "*");
+  }
+</script>

@@ -1,6 +1,6 @@
 ---
 title: "hw8_miniproject"
-format: pdf
+format: gfm
 editor: visual
 ---
 
