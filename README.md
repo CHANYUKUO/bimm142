@@ -5,4 +5,4 @@ Contact me if you have a question
 
 
 
-- class website:[code](https://bioboot.github.io/bimm143_W23/schedule/)
+- class website:[Bimm 143 Barry Grant](https://bioboot.github.io/bimm143_W23/schedule/)
